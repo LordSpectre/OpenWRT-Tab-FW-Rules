@@ -5,6 +5,9 @@ Following my first attempt to improve the LuCI interface so that Firewall rules 
 
 ## Package Contents
 
+### `luci-app-firewall-rules.json`
+This file will add a dedicated tab under Network → Firewall, providing a more organized and user-friendly way to manage/view firewall rules.
+
 ### `firewalltabs_view.js`
 This JavaScript file adds a tab next to the existing Firewall rules tab and is **read-only**. It simply collects all firewall rules and categorizes them into separate tabs, displaying rules specific to their originating zone. No modifications can be made here—it's purely for viewing.
 
@@ -28,11 +31,12 @@ Since there are only two files, I did not create an IPK package. Instead, the fi
 1. Choose the view you prefer (`firewalltabs-full.js` or `firewalltabs_view.js`) and rename the `.js` file to `firewalltabs.js`.
 
 2. Copy the two files exactly to these locations:
+```
 /usr/share/luci/menu.d/luci-app-firewall-rules.json
 /www/luci-static/resources/view/firewall/firewalltabs.js
+```
 
-
-3. Clear the cache on OpenWRT and in your browser:
+4. Clear the cache on OpenWRT and in your browser:
 
 - Run this command on OpenWRT:
   ```
