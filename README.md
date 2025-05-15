@@ -1,56 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LuCI Firewall Tabs</title>
-</head>
-<body>
 
-    <h2>LuCI Firewall Tabs Enhancement</h2>
+# LuCI Firewall Tabs Enhancement
 
-    <p>Following my first attempt to improve the LuCI interface so that Firewall rules would be displayed in separate tabs based on their originating zone: <a href="https://github.com/LordSpectre/OpenWRT-Viewer">https://github.com/LordSpectre/OpenWRT-Viewer</a>, this is my second attempt, implemented directly in LuCI without using an external server.</p>
+Following my first attempt to improve the LuCI interface so that Firewall rules would be displayed in separate tabs based on their originating zone: [OpenWRT-Viewer](https://github.com/LordSpectre/OpenWRT-Viewer), this is my second attempt, implemented directly in LuCI without using an external server.
 
-    <h3>Package Contents</h3>
+## Package Contents
 
-    <ul>
-        <li><strong>firewalltabs_view.js</strong>  
-            <p>This JavaScript file adds a tab next to the existing Firewall rules tab and is read-only. It simply collects all firewall rules and categorizes them into separate tabs, displaying rules specific to their originating zone. No modifications can be made here—it's purely for viewing.</p>
-        </li>
-        <li><strong>firewalltabs-full.js</strong>  
-            <p>Here, I attempted to reproduce the entire "Firewall Rules" tab. Like the previous JavaScript file, it takes all firewall rules and organizes them into separate tabs based on their originating zone.</p>
-            <p>In this version, users can modify, delete, or create new rules just like in the original tab.</p>
-            <p><strong>WARNING:</strong> Unfortunately, I haven't been able to fully resolve a minor issue related to adding and editing rules. For example, when a new rule is added, it will not immediately display all its parameters in the GUI. The page needs to be refreshed or, more simply, the user needs to click on the tab again.</p>
-            <p>This is a LuCI refresh issue that I have yet to address.</p>
-            <p>Other than that, the interface functions perfectly: rules can be added, modified, or deleted as expected—it’s purely a visual matter.</p>
-            <p>I hope to resolve this issue in the coming days, and any contributions are welcome.</p>
-        </li>
-    </ul>
+### `firewalltabs_view.js`
+This JavaScript file adds a tab next to the existing Firewall rules tab and is **read-only**. It simply collects all firewall rules and categorizes them into separate tabs, displaying rules specific to their originating zone. No modifications can be made here—it's purely for viewing.
 
-    <h3>Installation Instructions</h3>
+### `firewalltabs-full.js`
+Here, I attempted to reproduce the entire "Firewall Rules" tab. Like the previous JavaScript file, it takes all firewall rules and organizes them into separate tabs based on their originating zone.
 
-    <p>Since there are only two files, I did not create an IPK package. Instead, the files need to be copied manually to their respective directories.</p>
+In this version, users can **modify, delete, or create new rules** just like in the original tab.
 
-    <ol>
-        <li>Choose the view you prefer (<code>firewalltabs-full.js</code> or <code>firewalltabs_view.js</code>) and rename the <code>.js</code> file to <code>firewalltabs.js</code>.</li>
-        <li>Copy the two files exactly to these locations:  
-            <ul>
-                <li><code>/usr/share/luci/menu.d/luci-app-firewall-rules.json</code></li>
-                <li><code>/www/luci-static/resources/view/firewall/firewalltabs.js</code></li>
-            </ul>
-        </li>
-        <li>Clear the cache on OpenWRT and in your browser:
-            <ul>
-                <li>Run the following command on OpenWRT:  
-                    <code>root@OpenWRT # rm -f /tmp/*cach*</code></li>
-                <li>And on the browser: Press <code>CTRL+SHIFT+R</code> or <code>CTRL+F5</code>.</li>
-            </ul>
-        </li>
-    </ol>
+**⚠ WARNING:** Unfortunately, I haven't been able to fully resolve a minor issue related to adding and editing rules. For example, when a new rule is added, it will not immediately display all its parameters in the GUI. The page needs to be refreshed or, more simply, the user needs to click on the tab again.
 
-    <p>The new tab will appear under <strong>Network → Firewall</strong>, as shown in the image below.</p>
+This is a LuCI refresh issue that I have yet to address.
 
-    <img src="https://cover.laforestaincantata.org/i/00f6d64b-dabe-4300-ab3f-50fe84d870c3.png" alt="Firewall Tabs Screenshot">
+Other than that, the interface functions perfectly: rules can be added, modified, or deleted as expected—it’s purely a visual matter.
 
-</body>
-</html>
+I hope to resolve this issue in the coming days, and any contributions are welcome.
+
+## Installation Instructions
+
+Since there are only two files, I did not create an IPK package. Instead, the files need to be copied manually to their respective directories.
+
+1. Choose the view you prefer (`firewalltabs-full.js` or `firewalltabs_view.js`) and rename the `.js` file to `firewalltabs.js`.
+
+2. Copy the two files exactly to these locations:
+/usr/share/luci/menu.d/luci-app-firewall-rules.json
+/www/luci-static/resources/view/firewall/firewalltabs.js
+
+
+3. Clear the cache on OpenWRT and in your browser:
+
+- Run this command on OpenWRT:
+  ```
+  root@OpenWRT # rm -f /tmp/*cach*
+  ```
+- On the browser: Press `CTRL+SHIFT+R` or `CTRL+F5`.
+
+The new tab will appear under **Network → Firewall**, as shown in the image below.
+
+![Firewall Tabs Screenshot](https://cover.laforestaincantata.org/i/00f6d64b-dabe-4300-ab3f-50fe84d870c3.png)
